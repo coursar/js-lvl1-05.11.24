@@ -6,6 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    ok!!
+    ok!
+    <script>
+        // live-reload
+        const sse = new EventSource('/sse');
+        sse.addEventListener('message', ev => {
+            if (ev.data === 'reload') {
+                window.location.reload();
+            }
+        });
+    </script>
 </body>
 </html>
