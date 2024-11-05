@@ -11,12 +11,15 @@
 
     <script>
         // live-reload
-        const sse = new EventSource('/sse');
-        sse.addEventListener('message', ev => {
-            if (ev.data === 'reload') {
-                window.location.reload();
-            }
-        });
+        {
+            const sse = new EventSource('/sse');
+            sse.addEventListener('message', ev => {
+                if (ev.data === 'reload') {
+                    window.location.reload();
+                }
+            });
+            const amount = 10;
+        }
     </script>
 </body>
 </html>

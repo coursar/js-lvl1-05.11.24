@@ -28,3 +28,18 @@ TODO:
 
 let - no hoisting, block scope
 const - let+ ummutability on name -> value
+
+TDZ - временно мёртвая зона
+--script--
+```js
+.
+.
+.
+.const amount = 1000;
+// we can use amount
+```
+
+Isolation:
+1. {} - const, let (block scope) - not working*
+2. IIFE - function
+3. module
