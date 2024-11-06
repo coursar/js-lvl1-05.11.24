@@ -11,13 +11,24 @@
 //  1. script *(tommorow - modules)
 //  0. global -> globalThis (in Browser -> Window)
 
-function calculateCashback() {
-    const amount = 10_000;
+// Math operators:
+//  +, -, *, /, %, **
+
+// amount, cardType
+
+// function calculateTax (script level) -> window.calculateTax
+// const calculateTax = function (script level)
+function calculateTax() {
+    // FIXME: check amountValue format or use input-mask
+    const amount = Number.parseInt(window.amount.value, 10); // shadows outer name
+    // FIXME: check amountValue for finite number + limits
     const percent = 0.006;
     const additionalTax = 20;
+    // amountValue = 1000
+    // X * percent
     const tax = amount * percent + additionalTax; // VS Code -> Ctrl + Shift + R -> Refactoring
-    console.log(scriptVar); // globalThis.console.log
     console.log(tax);
 }
 
 const scriptVar = '...';
+

@@ -43,3 +43,45 @@ Isolation:
 1. {} - const, let (block scope) - not working*
 2. IIFE - function
 3. module
+
+# Objects
+
+```js
+// 1. object literal
+// 2. new Object()
+const card = {
+    name: 'Дебетовая Альфа-Карта',
+    slogan: 'Бесплатная всегда',
+    image: 'https://alfabank.servicecdn.ru/site-upload/9c/cd/9465/image-0.png',
+    feature1: {
+        text: 'Кэшбэк до 100%',
+        subtext: 'в барабане суперкэшбэка',
+    },
+    feature2: {}, // trailing comma
+};
+
+// .<name> - access to field
+// ['<name>'] - access to field
+
+console.log(card.name);
+card.name = 'Дебетовая Альфа';
+console.log(card.name);
+
+console.log(card['name']);
+card['name'] = 42;
+
+// not recommended
+delete card.name;
+
+// top mistakes
+// 1. access to not existing field -> undefined
+// 2.* write to not existing field -> create
+
+```
+
+# Global
+
+```js
+globalThis || self || global;
+globalThis || window || ...
+```

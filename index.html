@@ -6,9 +6,18 @@
     <title>Document</title>
 </head>
 <body>
-    ok!!!
+    <!-- window.amount -> ref to input object -->
+    <input type="number" name="amount" id="amount">
+    <!-- window.cardType -> ref to select object -->
+    <select name="cardType" id="cardType">
+        <option value="mastercard">mastercard</option>
+        <option value="visa">visa</option>
+        <option value="mir">mir</option>
+        <option value="vkpay">vkpay</option>
+    </select>
+    <button onclick="calculateTax()">calculate</button>
     <script src="app.js"></script>
-    <button onclick="calculateCashback()">click me</button>
+    <script src="lib.js"></script>
 
     <script>
         // live-reload
