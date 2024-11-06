@@ -42,7 +42,7 @@ TDZ - временно мёртвая зона
 Isolation:
 1. {} - const, let (block scope) - not working*
 2. IIFE - function
-3. module
+3. module + webpack + co
 
 # Objects
 
@@ -81,7 +81,18 @@ delete card.name;
 
 # Global
 
+// <element id="...">
+// function calculateTax (script level) -> window.calculateTax
+// const calculateTax = function (script level)
+
 ```js
 globalThis || self || global;
 globalThis || window || ...
 ```
+
+## Functions
+
+1. JS doesn't check params & args match
+1.1. if match - ok
+1.2. if params count < count args, args that doesn't -> undefined
+1.3. if params count > count args, args -> arguments
