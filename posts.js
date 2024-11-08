@@ -85,13 +85,52 @@
         // render();
     };
 
+    const addHandler = (ev) => {
+        // currentTarget = form
+        // target = input | button | form
+        // target vs currentTarget
+        ev.preventDefault();
+        const currentTarget = ev.currentTarget;
+        const name = currentTarget.elements['post-name'].value;
+        const post = {
+            id: Date(),
+            name: name,
+            image: 'https://placehold.co/200x100',
+            likes: 0,
+        };
+
+        posts.push(post);
+        ev.currentTarget.reset();
+        render();
+
+        // TODO:
+        // 1. add to state
+        // 2. partial update || render
+    };
+
     const render = () => {
         const containerEl = document.querySelector('[data-id="posts"]');
+
+        // not optimized
         Array.from(containerEl.children).forEach((o) => o.remove());
+
+        // default behaviour
+        const formEl = document.createElement('form');
+        formEl.onsubmit = addHandler; // browser call addHandler(ev)
+        const inputEl = document.createElement('input');
+        inputEl.name = 'post-name';
+        formEl.append(inputEl);
+
+        const buttonEl = document.createElement('button');
+        buttonEl.textContent = 'add';
+        formEl.append(buttonEl);
+
+        containerEl.append(formEl);
+
         const postEls = posts.map((o) => {
             const cardEl = PostCard(o);
             const likeEl = cardEl.querySelector('[data-action="like"]');
-            likeEl.onclick = () => clickHandler(o, cardEl); 
+            likeEl.onclick = (ev) => clickHandler(ev, o, cardEl); // browser anonymous arrow function(ev)
             return cardEl;
         });
         // spread
