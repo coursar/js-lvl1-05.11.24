@@ -28,8 +28,30 @@
         },
     ];
 
+    // Component => Web Component, React -> React Component
+
+    const PostCard = function(post) {
+        const divEl = document.createElement('div');
+
+        const imgEl = document.createElement('img');
+        imgEl.src = post.image;
+        divEl.append(imgEl);
+
+        const pEl = document.createElement('p');
+        pEl.textContent = post.name;
+        // const nameNode = document.createTextNode(post.name);
+        // pEl.append(nameNode);
+        divEl.append(pEl);
+
+        return divEl;
+    };
+
     // Element -> El
     const containerEl = document.querySelector('[data-id="posts"]');
-    debugger;
 
+    const postEls = posts.map((o) => PostCard(o));
+    // spread
+    // [1, 2, 3] => ...array => 1, 2, 3
+    // {a: 1, b: 2} => {...obj} <=> {a: 1, b: 2}
+    containerEl.append(...postEls); // <=> containerEl.append(postEls[0], postEls[1])
 })();
