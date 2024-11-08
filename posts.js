@@ -33,6 +33,14 @@
     const PostCard = function(post) {
         const divEl = document.createElement('div');
 
+        // bad code for trusted data
+        // divEl.innerHTML = `
+        //     <img src=${post.image}>
+        //     <div>
+        //         <p>${post.name}</p>
+        //     </div>
+        // `;
+
         const imgEl = document.createElement('img');
         imgEl.src = post.image;
         divEl.append(imgEl);
@@ -42,6 +50,19 @@
         // const nameNode = document.createTextNode(post.name);
         // pEl.append(nameNode);
         divEl.append(pEl);
+
+        const likeContaineEl = document.createElement('div');
+        const spanEl = document.createElement('span');
+        spanEl.textContent = `likes: ${post.likes}`;
+        spanEl.dataset.part = 'likes';  // camelCase -> camel-case, (except: htmlFor -> for, etc)
+        likeContaineEl.append(spanEl);
+
+        const buttonEl = document.createElement('button');
+        buttonEl.textContent = 'like me';
+        buttonEl.dataset.action = 'like'; 
+        likeContaineEl.append(buttonEl);
+
+        divEl.append(likeContaineEl);
 
         return divEl;
     };
