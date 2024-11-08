@@ -64,15 +64,40 @@
 
         divEl.append(likeContaineEl);
 
+        divEl.actions = {
+            updateLikes() {
+                spanEl.textContent = `likes: ${post.likes}`;
+            },
+        };
+
         return divEl;
     };
 
     // Element -> El
-    const containerEl = document.querySelector('[data-id="posts"]');
 
-    const postEls = posts.map((o) => PostCard(o));
-    // spread
-    // [1, 2, 3] => ...array => 1, 2, 3
-    // {a: 1, b: 2} => {...obj} <=> {a: 1, b: 2}
-    containerEl.append(...postEls); // <=> containerEl.append(postEls[0], postEls[1])
+    // likeEl.onclick = function(...)
+    const clickHandler = (post, cardEl) => {
+        post.likes += 1; // state change       
+        // const likesEl = cardEl.querySelector('[data-part="likes"]');
+        // likesEl.textContent = `likes: ${post.likes}`; // targeted update
+        cardEl.actions.updateLikes();
+
+        // render();
+    };
+
+    const render = () => {
+        const containerEl = document.querySelector('[data-id="posts"]');
+        Array.from(containerEl.children).forEach((o) => o.remove());
+        const postEls = posts.map((o) => {
+            const cardEl = PostCard(o);
+            const likeEl = cardEl.querySelector('[data-action="like"]');
+            likeEl.onclick = () => clickHandler(o, cardEl); 
+            return cardEl;
+        });
+        // spread
+        // [1, 2, 3] => ...array => 1, 2, 3
+        // {a: 1, b: 2} => {...obj} <=> {a: 1, b: 2}
+        containerEl.append(...postEls); // <=> containerEl.append(postEls[0], postEls[1])
+    };
+    render();
 })();
