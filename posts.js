@@ -26,6 +26,10 @@
             image: 'https://placehold.co/200x100',
             likes: 2,
         },
-    ]
+    ];
+
+    // Element -> El
+    const containerEl = document.querySelector('[data-id="posts"]');
+    debugger;
 
 })();
